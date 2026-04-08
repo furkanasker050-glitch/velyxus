@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velyxus Tech Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#phones">Phones</a></li>
+                <li><a href="#laptops">Laptops</a></li>
+                <li><a href="#accessories">Accessories</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="banner">
+            <div class="campaign-banner">
+                <h1>Welcome to Velyxus Tech Store!</h1>
+                <p>Your one-stop shop for the latest gadgets</p>
+            </div>
+        </section>
+        <section class="categories">
+            <h2>Product Categories</h2>
+            <div class="category-list">
+                <div class="category"><h3>Phones</h3></div>
+                <div class="category"><h3>Laptops</h3></div>
+                <div class="category"><h3>Accessories</h3></div>
+            </div>
+        </section>
+        <section class="featured-products">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product"><h3>Phone Model A</h3></div>
+                <div class="product"><h3>Laptop Model B</h3></div>
+                <div class="product"><h3>Accessory C</h3></div>
+            </div>
+        </section>
+        <section class="joke-generator">
+            <h2>Need a Laugh?</h2>
+            <button id="get-joke">Get New Joke</button>
+            <p id="joke"></p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2026 Velyxus Tech Store. All rights reserved.</p>
+    </footer>
+    <script>
+        $(document).ready(function() {
+            $('#get-joke').click(function() {
+                $.get('https://v2.jokeapi.dev/joke/Any', function(data) {
+                    var joke = data.joke ? data.joke : data.setup + ' ... ' + data.delivery;
+                    $('#joke').text(joke);
+                });
+            });
+        });
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
+        header { background-color: white; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; padding: 0; display: flex; justify-content: space-around; }
+        nav a { text-decoration: none; color: #333; }
+        .banner { background-color: #f0f0f0; padding: 20px; text-align: center; }
+        .categories, .featured-products, .joke-generator { padding: 20px; text-align: center; }
+        .category-list { display: flex; justify-content: space-around; }
+        .category, .product { border: 1px solid #ddd; padding: 15px; margin: 5px; width: 30%; } /* Adjust category and product width */ 
+        .product-grid { display: flex; justify-content: space-around; }
+        footer { text-align: center; padding: 10px; background-color: #333; color: white; }
+        @media (max-width: 768px) { .category-list, .product-grid { flex-direction: column; } }
+    </style>
+</body>
+</html>
